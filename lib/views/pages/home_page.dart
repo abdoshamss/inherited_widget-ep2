@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:inherited_widget/controllers/state_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final stateWidget =
+        context.dependOnInheritedWidgetOfExactType<StateInheritedWidget>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shamss Counter'),
@@ -15,7 +18,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '0',
+              stateWidget!.counter.toString(),
               style: Theme.of(context).textTheme.headline4,
             ),
             const SizedBox(
@@ -32,13 +35,14 @@ class HomePage extends StatelessWidget {
                 label: const Text('Change Primary Swatch'),
               ),
             ),
-            FloatingActionButton(
-                onPressed: () {},
-                child:const Icon(
-                  Icons.add,
-                ),),
-                
           ],
+        ),
+      ),
+      
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
         ),
       ),
     );
