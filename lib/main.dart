@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inherited_widget/controllers/state_widget.dart';
 import 'package:inherited_widget/views/pages/home_page.dart';
 
 void main() {
@@ -10,13 +11,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Inherited Widget',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return StateInheritedWidget(
+      counter: 0,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Inherited Widget',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const HomePage(),
       ),
-      home: const HomePage(),
     );
   }
 }
