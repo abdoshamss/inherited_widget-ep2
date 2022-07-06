@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inherited_widget/controllers/state_widget.dart';
 import 'package:inherited_widget/views/pages/home_page.dart';
+ 
 
 void main() {
   runApp(const MyApp());
@@ -9,17 +10,22 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return StateInheritedWidget(
-      counter: 0,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Inherited Widget',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const HomePage(),
+    return StateWidget(
+      child: Builder(
+        builder: (context) {
+          final state = StateInheritedWidget.of(context).state;
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Inherited Widget Example',
+            theme: ThemeData(
+              primarySwatch: state.primarySwatch,
+            ),
+            home: const HomePage(),
+          );
+        }
       ),
     );
   }
